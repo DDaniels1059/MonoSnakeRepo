@@ -44,10 +44,10 @@ namespace MonoSnake.Data
                     Rectangle textureRectangle;
                     Vector2 origin = new Vector2(x * 25, y * 25); // Set the origin to the center of the texture
                     Vector2 neworigin = new Vector2(origin.X + (int)10, origin.Y + 30);
-                    if (GameData.TextureMap.TryGetValue(tileValue, out textureRectangle))
+                    if (GameData.TextureCoords.TryGetValue(tileValue, out textureRectangle))
                     {
                         if (tileValue == 4 || tileValue == 5)
-                        {
+                        {   
                             _spriteBatch.Draw(GameData.TextureAtlas, new Rectangle(x * 25, y * 25, 35, 35), textureRectangle, Color.White, -0f, Vector2.Zero, SpriteEffects.None, Game1.GetDepth(neworigin, _graphics));
                             //_spriteBatch.DrawString(GameData.GameFont, "Pos: " + Game1.GetDepth(neworigin, _graphics), new Vector2(neworigin.X - 20, neworigin.Y + 10), Color.White, 0f, Vector2.Zero, 0.2f, SpriteEffects.None, 1f);
                             //_spriteBatch.Draw(GameData.Textures["Player"], neworigin, null, Color.White, 0f, Vector2.Zero, 0.2f, SpriteEffects.None, 1f);

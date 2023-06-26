@@ -34,7 +34,7 @@ namespace MonoSnake.Player
         }
         public Snake()
         {
-            headRectangle = GameData.TextureCoordinates["snakeHead"];
+            headRectangle = GameData.TextureMap["snakeHead"];
             headPosition = new Vector2(150, 300);
             headCollider = new Rectangle((int)headPosition.X, (int)headPosition.Y, headRectangle.Width, headRectangle.Height);
 
@@ -52,46 +52,46 @@ namespace MonoSnake.Player
 
             if (kState.IsKeyDown(Keys.W))
             {
-                //headPosition.Y -= speed * dt;
+                headPosition.Y -= speed * dt;
 
                 direction = Direction.Up;
             }
             else if (kState.IsKeyDown(Keys.S))
             {
-                //headPosition.Y += speed * dt;
+                headPosition.Y += speed * dt;
 
                 direction = Direction.Down;
             }
             else if (kState.IsKeyDown(Keys.A))
             {
-                //headPosition.X -= speed * dt;
+                headPosition.X -= speed * dt;
 
                 direction = Direction.Left;
             }
             else if (kState.IsKeyDown(Keys.D))
             {
-                //headPosition.X += speed * dt;
+                headPosition.X += speed * dt;
 
                 direction = Direction.Right;
             }
 
 
-            if (direction == Direction.Up)
-            {
-                headPosition.Y -= speed * dt;
-            }
-            else if (direction == Direction.Down)
-            {
-                headPosition.Y += speed * dt;
-            }
-            else if (direction == Direction.Left)
-            {
-                headPosition.X -= speed * dt;
-            }
-            else if (direction == Direction.Right)
-            {
-                headPosition.X += speed * dt;
-            }
+            //if (direction == Direction.Up)
+            //{
+            //    headPosition.Y -= speed * dt;
+            //}
+            //else if (direction == Direction.Down)
+            //{
+            //    headPosition.Y += speed * dt;
+            //}
+            //else if (direction == Direction.Left)
+            //{
+            //    headPosition.X -= speed * dt;
+            //}
+            //else if (direction == Direction.Right)
+            //{
+            //    headPosition.X += speed * dt;
+            //}
 
             // Update Head Collider Before Collision Check
             headCollider.Location = new Point((int)headPosition.X, (int)headPosition.Y);
@@ -188,12 +188,12 @@ namespace MonoSnake.Player
             {
                 if (bodypart.isTail)
                 {
-                    _spritebatch.Draw(GameData.TextureAtlas, new Vector2((int)(bodypart.position + spriteOrigin).X, (int)(bodypart.position + spriteOrigin).Y), GameData.TextureCoordinates["snakeTail"], Color.White, bodypart.rotation, spriteOrigin, 1f, SpriteEffects.None, Game1.GetDepth(bodypart.newOrigin, _graphics));
+                    _spritebatch.Draw(GameData.TextureAtlas, new Vector2((int)(bodypart.position + spriteOrigin).X, (int)(bodypart.position + spriteOrigin).Y), GameData.TextureMap["snakeTail"], Color.White, bodypart.rotation, spriteOrigin, 1f, SpriteEffects.None, Game1.GetDepth(bodypart.newOrigin, _graphics));
                     //_spritebatch.Draw(GameData.Textures["Player"], newBodyOrigin, null, Color.Red, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 1f);
                 }
                 else
                 {
-                    _spritebatch.Draw(GameData.TextureAtlas, new Vector2((int)(bodypart.position + spriteOrigin).X, (int)(bodypart.position + spriteOrigin).Y), GameData.TextureCoordinates["snakeBody"], Color.White, bodypart.rotation, spriteOrigin, 1f, SpriteEffects.None, Game1.GetDepth(bodypart.newOrigin, _graphics));
+                    _spritebatch.Draw(GameData.TextureAtlas, new Vector2((int)(bodypart.position + spriteOrigin).X, (int)(bodypart.position + spriteOrigin).Y), GameData.TextureMap["snakeBody"], Color.White, bodypart.rotation, spriteOrigin, 1f, SpriteEffects.None, Game1.GetDepth(bodypart.newOrigin, _graphics));
                     //_spritebatch.Draw(GameData.Textures["Player"], newBodyOrigin, null, Color.Red, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 1f);
                 }
             }

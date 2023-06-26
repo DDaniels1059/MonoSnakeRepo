@@ -17,7 +17,7 @@ namespace MonoSnake.Items
 
         public Apple(int X, int Y)
         {
-            textureRectangle = GameData.TextureCoordinates["Player"]; // Retrieve the texture rectangle for "Player" from the sprite atlas
+            textureRectangle = GameData.TextureMap["Player"]; // Retrieve the texture rectangle for "Player" from the sprite atlas
             bounds = new Rectangle(X, Y, textureRectangle.Width, textureRectangle.Height);
         }
 

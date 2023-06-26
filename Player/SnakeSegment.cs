@@ -20,10 +20,9 @@ namespace MonoSnake.Player
         public Vector2 newOrigin = Vector2.Zero;
         public SnakeSegment()
         {
-            textureRectangle = GameData.TextureCoordinates["Player"];
+            textureRectangle = GameData.TextureMap["Player"];
             collider = new Rectangle((int)position.X + 7, (int)position.Y + 7, textureRectangle.Width - 15, textureRectangle.Height - 15);
             rotation = 0f; // Initialize the rotation to 0
-
         }
     }
 }

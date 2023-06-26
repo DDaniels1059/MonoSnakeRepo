@@ -14,35 +14,42 @@ namespace MonoSnake.Data
     {
         public static SpriteFont GameFont;
         public static List<Apple> Apples;
-        public static Dictionary<int, Rectangle> TextureMap;
+        public static Dictionary<int, Rectangle> TextureCoords;
         public static Texture2D TextureAtlas;
-        public static Dictionary<string, Rectangle> TextureCoordinates;
-
+        public static Dictionary<string, Rectangle> TextureMap;
+        public static bool isFullScreen = false;
 
 
         public static void LoadData(ContentManager content)
         {
             TextureAtlas = content.Load<Texture2D>("Misc/TextureAtlas");
-            TextureCoordinates = new Dictionary<string, Rectangle>
+            TextureMap = new Dictionary<string, Rectangle>
             {                                  //X   Y   W    H
+                //Player
                 ["Player"] =       new Rectangle(0,  0,  25, 25),
                 ["snakeTail"] =    new Rectangle(25, 0,  25, 25),
                 ["snakeBody"] =    new Rectangle(50, 0,  25, 25),
                 ["snakeHead"] =    new Rectangle(75, 0,  25, 25),
+
+                //Plants
                 ["cactus"] =       new Rectangle(0,  25, 25, 25),
                 ["cactusflower"] = new Rectangle(25, 25, 25, 25),
                 ["cactussingle"] = new Rectangle(50, 25, 25, 25),
                 ["Grass1"] =       new Rectangle(75, 25, 25, 25),
-                ["Grass2"] =       new Rectangle(0,  50, 25, 25)
+                ["Grass2"] =       new Rectangle(0,  50, 25, 25),
+
+                //ICONS
+                ["FullScreen"] =   new Rectangle(25, 50, 25, 25),
+                ["Windowed"] =     new Rectangle(50, 50, 25, 25)
             };
 
-            TextureMap = new Dictionary<int, Rectangle>
+            TextureCoords = new Dictionary<int, Rectangle>
             {
-                { 1, TextureCoordinates["cactus"] },
-                { 2, TextureCoordinates["cactusflower"] },
-                { 3, TextureCoordinates["cactussingle"] },
-                { 4, TextureCoordinates["Grass1"] },
-                { 5, TextureCoordinates["Grass2"] }
+                { 1, TextureMap["cactus"] },
+                { 2, TextureMap["cactusflower"] },
+                { 3, TextureMap["cactussingle"] },
+                { 4, TextureMap["Grass1"] },
+                { 5, TextureMap["Grass2"] }
             };
 
             Apples = new List<Apple>();

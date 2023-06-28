@@ -12,13 +12,17 @@ namespace MonoSnake.Data
 {
     public class GameData
     {
-        public static SpriteFont GameFont;
+        public static List<Button> ButtonList;
         public static List<Apple> Apples;
-        public static Dictionary<int, Rectangle> TextureCoords;
-        public static Texture2D TextureAtlas;
-        public static Dictionary<string, Rectangle> TextureMap;
-        public static bool isFullScreen = false;
 
+        public static Dictionary<int, Rectangle> TextureCoords;
+        public static Dictionary<string, Rectangle> TextureMap;
+
+        public static Texture2D TextureAtlas;
+        public static SpriteFont GameFont;
+
+        public static bool isFullScreen = false;
+        public static bool isDebug = false;
 
         public static void LoadData(ContentManager content)
         {
@@ -40,7 +44,9 @@ namespace MonoSnake.Data
 
                 //ICONS
                 ["FullScreen"] =   new Rectangle(25, 50, 25, 25),
-                ["Windowed"] =     new Rectangle(50, 50, 25, 25)
+                ["Windowed"] =     new Rectangle(50, 50, 25, 25),
+                ["Debug"] =        new Rectangle(75, 50, 25, 25)
+
             };
 
             TextureCoords = new Dictionary<int, Rectangle>
@@ -53,6 +59,7 @@ namespace MonoSnake.Data
             };
 
             Apples = new List<Apple>();
+            ButtonList = new List<Button>();
             GameFont = content.Load<SpriteFont>("Misc/gameFont");
         }
     }

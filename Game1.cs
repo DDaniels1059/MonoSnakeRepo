@@ -23,6 +23,7 @@ namespace MonoSnake
         private Vector2 lastPosition;
 
         private Button windowButton = new Button();
+        private Button debugButton = new Button();
 
         private Snake player;
         private Generator gen;
@@ -71,8 +72,11 @@ namespace MonoSnake
             gen = new Generator();
 
 
-            windowButton.CreateButton(GameData.TextureMap["FullScreen"], GameData.TextureMap["Windowed"], true);
+            windowButton.CreateButton(GameData.TextureMap["FullScreen"], GameData.TextureMap["Windowed"], true, 2f);
             windowButton.buttonPress += WindowPress;
+
+            debugButton.CreateButton(GameData.TextureMap["Debug"], GameData.TextureMap["Debug"], true, 2f);
+            debugButton.buttonPress += DebugPress;
 
             base.LoadContent();
         }
@@ -112,6 +116,7 @@ namespace MonoSnake
 
 
                 windowButton.Update(mState, mStateOld, dt, new Vector2(_graphics.PreferredBackBufferWidth - 50, (_graphics.PreferredBackBufferHeight / 2) / 25));
+                debugButton.Update(mState, mStateOld, dt, new Vector2(windowButton.location.X - 50, (_graphics.PreferredBackBufferHeight / 2) / 25));
 
                 mStateOld = mState;
                 kStateOld = kState;
@@ -152,6 +157,19 @@ namespace MonoSnake
             }
         }
 
+        public void DebugPress()
+        {
+            if (GameData.isDebug)
+            {
+                GameData.isDebug = false;
+            }
+            else
+            {
+                GameData.isDebug = true;
+            }
+        }
+
+
         protected override void Draw(GameTime gameTime)
         {
             Color color = gameTime.IsRunningSlowly ? Color.Red : Color.CornflowerBlue;
@@ -176,12 +194,19 @@ namespace MonoSnake
 
             //Static Display
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+            if(GameData.isDebug)
+            {
                 FPSM.Draw(_spriteBatch, GameData.GameFont, new Vector2(50, 20), Color.White);
                 _spriteBatch.DrawString(GameData.GameFont, "X : " + player.headCollider.X, new Vector2(50, 50), Color.Black);
                 _spriteBatch.DrawString(GameData.GameFont, "Y : " + player.headCollider.Y, new Vector2(50, 80), Color.Black);
                 _spriteBatch.DrawString(GameData.GameFont, "Apples : " + GameData.Apples.Count, new Vector2(50, 110), Color.Black);
+            }
 
-                windowButton.Draw(_spriteBatch, 2f);
+            foreach(Button button in GameData.ButtonList)
+            {
+                button.Draw(_spriteBatch);
+            }
 
             _spriteBatch.End();
 

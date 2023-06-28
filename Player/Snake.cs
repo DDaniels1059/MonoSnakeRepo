@@ -52,46 +52,42 @@ namespace MonoSnake.Player
 
             if (kState.IsKeyDown(Keys.W))
             {
-                headPosition.Y -= speed * dt;
-
+                //headPosition.Y -= speed * dt;
                 direction = Direction.Up;
             }
             else if (kState.IsKeyDown(Keys.S))
             {
-                headPosition.Y += speed * dt;
-
+                //headPosition.Y += speed * dt;
                 direction = Direction.Down;
             }
             else if (kState.IsKeyDown(Keys.A))
             {
-                headPosition.X -= speed * dt;
-
+                //headPosition.X -= speed * dt;
                 direction = Direction.Left;
             }
             else if (kState.IsKeyDown(Keys.D))
             {
-                headPosition.X += speed * dt;
-
+                //headPosition.X += speed * dt;
                 direction = Direction.Right;
             }
 
 
-            //if (direction == Direction.Up)
-            //{
-            //    headPosition.Y -= speed * dt;
-            //}
-            //else if (direction == Direction.Down)
-            //{
-            //    headPosition.Y += speed * dt;
-            //}
-            //else if (direction == Direction.Left)
-            //{
-            //    headPosition.X -= speed * dt;
-            //}
-            //else if (direction == Direction.Right)
-            //{
-            //    headPosition.X += speed * dt;
-            //}
+            if (direction == Direction.Up)
+            {
+                headPosition.Y -= speed * dt;
+            }
+            else if (direction == Direction.Down)
+            {
+                headPosition.Y += speed * dt;
+            }
+            else if (direction == Direction.Left)
+            {
+                headPosition.X -= speed * dt;
+            }
+            else if (direction == Direction.Right)
+            {
+                headPosition.X += speed * dt;
+            }
 
             // Update Head Collider Before Collision Check
             headCollider.Location = new Point((int)headPosition.X, (int)headPosition.Y);
@@ -127,7 +123,7 @@ namespace MonoSnake.Player
                     if (distance > 20)
                     {
                         Vector2 orientation = Vector2.Normalize(norm);
-                        float k = 45; // you can change this, larger numbers make the segments faster/stiffer, smaller numbers (closer to zero) make it slower/stretchier
+                        float k = 35; // you can change this, larger numbers make the segments faster/stiffer, smaller numbers (closer to zero) make it slower/stretchier
                         segment.position -= orientation * (25 - distance) * k * dt; // (55 - distance) is the Offset/Overshoot correction
                     }
                 }
@@ -148,19 +144,19 @@ namespace MonoSnake.Player
                     //bodypart.rotation = segmentRotation;
 
                 }
-                else
-                {
-                    if (bodypart == Body[0])
-                    {
-                        forwardSegmentPosition = Body[Body.IndexOf(bodypart) + 1].position;
-                        segmentRotation = CalculateSegmentRotation(bodypart.position, forwardSegmentPosition);
-                    }
-                    else
-                    {
-                        previousSegmentPosition = Body[Body.IndexOf(bodypart) - 1].position;
-                        segmentRotation = CalculateSegmentRotationRelativeToPrevious(bodypart.position, previousSegmentPosition);
-                    }
-                }
+                //else
+                //{
+                //    if (bodypart == Body[0])
+                //    {
+                //        forwardSegmentPosition = Body[Body.IndexOf(bodypart) + 1].position;
+                //        segmentRotation = CalculateSegmentRotation(bodypart.position, forwardSegmentPosition);
+                //    }
+                //    else
+                //    {
+                //        previousSegmentPosition = Body[Body.IndexOf(bodypart) - 1].position;
+                //        segmentRotation = CalculateSegmentRotationRelativeToPrevious(bodypart.position, previousSegmentPosition);
+                //    }
+                //}
 
                 bodypart.rotation = segmentRotation;
 
